@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Russian Divers Team — Нячанг</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #050810;
+    --deep: #080d1a;
+    --navy: #0a1628;
+    --blue-dark: #0d2040;
+    --accent: #4a9eff;
+    --gold: #c9a84c;
+    --white: #f0f4ff;
+    --white-dim: rgba(240,244,255,0.65);
+    --white-faint: rgba(240,244,255,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG SWITCHER ── */
+  .lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    gap: 4px;
+    background: rgba(5,8,16,0.85);
+    border: 1px solid rgba(74,158,255,0.25);
+    border-radius: 24px;
+    padding: 4px;
+    backdrop-filter: blur(12px);
+  }
+  .lang-btn {
+    padding: 6px 14px;
+    border: none;
+    background: transparent;
+    color: var(--white-dim);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .lang-btn.active { background: var(--accent); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    background: url('images/photo3.png') center center / cover no-repeat;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5,8,16,0.55) 0%, rgba(5,8,16,0.2) 40%, rgba(5,8,16,0.75) 100%);
+  }
+
+  /* Bubbles */
+  .bubbles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(74,158,255,0.35);
+    animation: bubbleRise linear infinite;
+  }
+  .bubble:nth-child(1) { width: 7px;  height: 7px;  left: 12%; bottom: -20px; animation-duration: 14s; animation-delay: 0s; }
+  .bubble:nth-child(2) { width: 4px;  height: 4px;  left: 33%; bottom: -20px; animation-duration: 10s; animation-delay: 4s; }
+  .bubble:nth-child(3) { width: 11px; height: 11px; left: 58%; bottom: -20px; animation-duration: 16s; animation-delay: 1s; }
+  .bubble:nth-child(4) { width: 5px;  height: 5px;  left: 77%; bottom: -20px; animation-duration: 12s; animation-delay: 6s; }
+  .bubble:nth-child(5) { width: 8px;  height: 8px;  left: 88%; bottom: -20px; animation-duration: 9s;  animation-delay: 2s; }
+  @keyframes bubbleRise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.25; }
+    100% { transform: translateY(-105vh) translateX(15px); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .hero-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    display: block;
+    animation: fadeUp 1s ease-out 0.2s both;
+    filter: drop-shadow(0 4px 20px rgba(74,158,255,0.3));
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 11vw, 120px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease-out 0.6s both;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white-dim);
+    margin-bottom: 44px;
+    animation: fadeUp 1s ease-out 0.8s both;
+  }
+
+  .hero-cta { animation: fadeUp 1s ease-out 1s both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2.5s ease-in-out infinite;
+    opacity: 0.5;
+  }
+  .scroll-hint-line { width: 1px; height: 36px; background: linear-gradient(180deg, transparent, var(--accent)); }
+  .scroll-hint span { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 38px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn:hover::before { transform: translateX(0); }
+  .btn:hover { color: var(--black); }
+  .btn span { position: relative; z-index: 1; }
+
+  /* ── LAYOUT ── */
+  section { padding: 96px 0; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+  .section-label { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .divider { width: 56px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); margin-bottom: 36px; }
+
+  /* ── GALLERY STRIP ── */
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 3px;
+    height: 420px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(5,8,16,0.5) 100%);
+    pointer-events: none;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--deep); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-text p { font-size: 14px; line-height: 1.95; color: var(--white-dim); margin-bottom: 18px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .stat {
+    background: var(--navy);
+    padding: 30px 26px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat:hover { background: var(--blue-dark); }
+  .stat::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .stat:hover::after { transform: scaleX(1); }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 7px; }
+  .stat-label { font-size: 11px; letter-spacing: 0.08em; color: var(--white-dim); text-transform: uppercase; }
+
+  /* ── PACKAGES ── */
+  .packages { background: var(--black); }
+  .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 56px; }
+  .pkg {
+    background: var(--navy);
+    padding: 44px 34px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s, transform 0.4s;
+  }
+  .pkg.featured { background: var(--blue-dark); }
+  .pkg.featured::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(74,158,255,0.35);
+    pointer-events: none;
+  }
+  .pkg:hover { background: var(--blue-dark); transform: translateY(-5px); }
+  .pkg-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: block; }
+  .pkg-name { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; margin-bottom: 8px; line-height: 1.1; }
+  .pkg-price { font-family: 'Cormorant Garamond', serif; font-size: 54px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 30px; }
+  .pkg-price sup { font-size: 22px; vertical-align: super; }
+  .pkg-price small { font-size: 20px; }
+  .pkg-features { list-style: none; margin-bottom: 36px; }
+  .pkg-features li {
+    font-size: 13px;
+    color: var(--white-dim);
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(240,244,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pkg-features li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--deep); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 56px; }
+  .step { background: var(--navy); padding: 38px 26px; }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 300; color: rgba(74,158,255,0.1); line-height: 1; margin-bottom: 14px; }
+  .step-title { font-size: 14px; font-weight: 500; margin-bottom: 10px; }
+  .step-text { font-size: 13px; color: var(--white-dim); line-height: 1.75; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 110px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 65% 90% at 50% 50%, rgba(26,107,204,0.18) 0%, transparent 70%);
+  }
+  .cta-section > * { position: relative; z-index: 1; }
+  .cta-section p { font-size: 15px; color: var(--white-dim); margin: 0 auto 44px; max-width: 480px; line-height: 1.8; }
+  .cta-details { display: flex; justify-content: center; gap: 52px; margin-top: 44px; flex-wrap: wrap; }
+  .cta-detail-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .cta-detail-value { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--black); border-top: 1px solid rgba(74,158,255,0.1); padding: 60px 0 36px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 52px; }
+  .footer-logo { width: 56px; height: 56px; border-radius: 50%; margin-bottom: 16px; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; margin-bottom: 14px; }
+  .footer-brand em { font-style: italic; color: var(--accent); }
+  .footer-desc { font-size: 13px; color: var(--white-dim); line-height: 1.85; max-width: 260px; }
+  .footer-col-title { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .footer-links a { color: var(--white-dim); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid rgba(240,244,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: rgba(240,244,255,0.3); }
+
+  /* ── FADE IN ── */
+  .fi { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fi.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .gallery-strip { grid-template-columns: 1fr 1fr; height: auto; }
+    .gallery-item { height: 220px; }
+    .about-grid, .footer-grid { grid-template-columns: 1fr; gap: 44px; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .container { padding: 0 20px; }
+    section { padding: 68px 0; }
+    .gallery-strip { grid-template-columns: 1fr; height: auto; }
+    .gallery-item { height: 260px; }
+    .steps { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .cta-details { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANG -->
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="bubbles">
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+  </div>
+  <div class="hero-content">
+    <img src="images/logo.svg" alt="Russian Divers Team" class="hero-logo">
+    <p class="hero-eyebrow" data-ru="Нячанг · Вьетнам · PADI" data-en="Nha Trang · Vietnam · PADI">Нячанг · Вьетнам · PADI</p>
+    <h1 class="hero-title">Russian<br><em>Divers</em><br>Team</h1>
+    <p class="hero-sub" data-ru="Тёплое море. Кораллы. Рыбы в лицо." data-en="Warm sea. Corals. Fish in your face.">Тёплое море. Кораллы. Рыбы в лицо.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/84347779230?text=Хочу%20дайвинг" class="btn" target="_blank">
+        <span data-ru="Записаться на погружение" data-en="Book a dive">Записаться на погружение</span>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-strip">
+  <div class="gallery-item"><img src="images/photo3.png" alt="Дайвинг Нячанг"></div>
+  <div class="gallery-item"><img src="images/photo1.png" alt="Подводный мир"></div>
+  <div class="gallery-item"><img src="images/photo2.png" alt="Снорклинг"></div>
+  <div class="gallery-item"><img src="images/photo4.png" alt="Дайверы"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fi">
+        <p class="section-label" data-ru="О нас" data-en="About us">О нас</p>
+        <h2 class="section-title" data-ru="Влюбляем в дайвинг<br>с первого <em>погружения</em>" data-en="Making you fall in love<br>with diving from the first <em>dive</em>">Влюбляем в дайвинг<br>с первого <em>погружения</em></h2>
+        <div class="divider"></div>
+        <p data-ru="Нячанг — одно из лучших мест во Вьетнаме для знакомства с подводным миром. Тёплая вода круглый год, прозрачность до 20 метров и настоящая магия под водой: кораллы, рифовые рыбы и ощущение невесомости." data-en="Nha Trang is one of the best places in Vietnam to discover the underwater world. Warm water year-round, visibility up to 20 meters and real underwater magic: corals, reef fish and the feeling of weightlessness.">Нячанг — одно из лучших мест во Вьетнаме для знакомства с подводным миром. Тёплая вода круглый год, прозрачность до 20 метров и настоящая магия под водой: кораллы, рифовые рыбы и ощущение невесомости.</p>
+        <p data-ru="Русскоязычный инструктор, сертификаты PADI, группы 1:2. Опыт не нужен — уметь плавать необязательно. Забираем трансфером, возвращаем сытыми и счастливыми к обеду." data-en="Russian-speaking instructor, PADI certificates, groups 1:2. No experience needed — swimming not required. We pick you up by transfer and bring you back full and happy by lunch.">Русскоязычный инструктор, сертификаты PADI, группы 1:2. Опыт не нужен — уметь плавать необязательно. Забираем трансфером, возвращаем сытыми и счастливыми к обеду.</p>
+      </div>
+      <div class="about-stats fi">
+        <div class="stat">
+          <div class="stat-number">20m</div>
+          <div class="stat-label" data-ru="Видимость под водой" data-en="Underwater visibility">Видимость под водой</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">28°</div>
+          <div class="stat-label" data-ru="Температура воды" data-en="Water temperature">Температура воды</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">1:2</div>
+          <div class="stat-label" data-ru="Инструктор на группу" data-en="Instructor per group">Инструктор на группу</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100+</div>
+          <div class="stat-label" data-ru="Отзывов на Google" data-en="Google reviews">Отзывов на Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages">
+  <div class="container">
+    <div class="fi">
+      <p class="section-label" data-ru="Программы" data-en="Programs">Программы</p>
+      <h2 class="section-title" data-ru="Выберите своё <em>погружение</em>" data-en="Choose your <em>dive</em>">Выберите своё <em>погружение</em></h2>
+    </div>
+    <div class="packages-grid">
+
+      <div class="pkg fi">
+        <span class="pkg-tag" data-ru="Для новичков" data-en="For beginners">Для новичков</span>
+        <div class="pkg-name" data-ru="Фан-дайвинг<br>Стандарт" data-en="Fun Diving<br>Standard">Фан-дайвинг<br>Стандарт</div>
+        <div class="pkg-price"><sup>$</sup>90</div>
+        <ul class="pkg-features">
+          <li data-ru="2 погружения с инструктором" data-en="2 dives with instructor">2 погружения с инструктором</li>
+          <li data-ru="Трансфер в порт и обратно" data-en="Transfer to port and back">Трансфер в порт и обратно</li>
+          <li data-ru="Завтрак и обед на лодке" data-en="Breakfast and lunch on boat">Завтрак и обед на лодке</li>
+          <li data-ru="Всё снаряжение включено" data-en="All equipment included">Всё снаряжение включено</li>
+          <li data-ru="Русскоязычный инструктор" data-en="Russian-speaking instructor">Русскоязычный инструктор</li>
+        </ul>
+        <a href="https://wa.me/84347779230?text=Хочу%20дайвинг" class="btn" target="_blank" style="width:100%;justify-content:center;">
+          <span data-ru="Записаться" data-en="Book now">Записаться</span>
+        </a>
+      </div>
+
+      <div class="pkg featured fi">
+        <span class="pkg-tag" data-ru="Популярный выбор ✦" data-en="Popular choice ✦">Популярный выбор ✦</span>
+        <div class="pkg-name" data-ru="Фан-дайвинг<br>+ Контент" data-en="Fun Diving<br>+ Content">Фан-дайвинг<br>+ Контент</div>
+        <div class="pkg-price"><sup>$</sup>120</div>
+        <ul class="pkg-features">
+          <li data-ru="Всё из пакета Стандарт" data-en="Everything from Standard">Всё из пакета Стандарт</li>
+          <li data-ru="Фото и видео под водой" data-en="Underwater photo & video">Фото и видео под водой</li>
+          <li data-ru="Съёмка инструктором" data-en="Filmed by instructor">Съёмка инструктором</li>
+          <li data-ru="Контент в тот же день" data-en="Content same day">Контент в тот же день</li>
+          <li data-ru="Готово для Instagram" data-en="Ready for Instagram">Готово для Instagram</li>
+        </ul>
+        <a href="https://wa.me/84347779230?text=Хочу%20дайвинг%20с%20контентом" class="btn" target="_blank" style="width:100%;justify-content:center;">
+          <span data-ru="Записаться" data-en="Book now">Записаться</span>
+        </a>
+      </div>
+
+      <div class="pkg fi">
+        <span class="pkg-tag" data-ru="Снорклинг / Опытным" data-en="Snorkeling / Certified">Снорклинг / Опытным</span>
+        <div class="pkg-name" data-ru="Снорклинг &<br>Дайвинг" data-en="Snorkeling &<br>Diving">Снорклинг &<br>Дайвинг</div>
+        <div class="pkg-price"><sup>$</sup>40<small> / 80</small></div>
+        <ul class="pkg-features">
+          <li data-ru="Снорклинг — $40" data-en="Snorkeling — $40">Снорклинг — $40</li>
+          <li data-ru="Дайвинг (сертификат) — $80" data-en="Diving (certified) — $80">Дайвинг (сертификат) — $80</li>
+          <li data-ru="Трансфер включён" data-en="Transfer included">Трансфер включён</li>
+          <li data-ru="Снаряжение включено" data-en="Equipment included">Снаряжение включено</li>
+          <li data-ru="Обед на лодке" data-en="Lunch on boat">Обед на лодке</li>
+        </ul>
+        <a href="https://wa.me/84347779230?text=Хочу%20снорклинг" class="btn" target="_blank" style="width:100%;justify-content:center;">
+          <span data-ru="Записаться" data-en="Book now">Записаться</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <div class="fi">
+      <p class="section-label" data-ru="Как это работает" data-en="How it works">Как это работает</p>
+      <h2 class="section-title" data-ru="От записи до <em>глубины</em>" data-en="From booking to the <em>deep</em>">От записи до <em>глубины</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step fi">
+        <div class="step-num">01</div>
+        <div class="step-title" data-ru="Пишете нам" data-en="Contact us">Пишете нам</div>
+        <div class="step-text" data-ru="Напишите «Хочу дайвинг» в WhatsApp. Бронь минимум за сутки." data-en="Write 'I want to dive' on WhatsApp. Book at least 24 hours in advance.">Напишите «Хочу дайвинг» в WhatsApp. Бронь минимум за сутки.</div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">02</div>
+        <div class="step-title" data-ru="7:00 — трансфер" data-en="7:00 — transfer">7:00 — трансфер</div>
+        <div class="step-text" data-ru="Забираем вас, едем в южный порт Нячанга на лодку." data-en="We pick you up and head to Nha Trang's south port.">Забираем вас, едем в южный порт Нячанга на лодку.</div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">03</div>
+        <div class="step-title" data-ru="Инструктаж" data-en="Briefing">Инструктаж</div>
+        <div class="step-text" data-ru="На лодке инструктор объясняет всё пошагово. Спокойно, понятно, без стресса." data-en="On the boat, the instructor explains everything step by step. Calm and clear.">На лодке инструктор объясняет всё пошагово. Спокойно, понятно, без стресса.</div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">04</div>
+        <div class="step-title" data-ru="Под водой!" data-en="Underwater!">Под водой!</div>
+        <div class="step-text" data-ru="2 погружения, инструктор рядом. Обед. Домой к 13:00 с эмоциями на всю жизнь." data-en="2 dives, instructor by your side. Lunch. Home by 13:00 with memories for life.">2 погружения, инструктор рядом. Обед. Домой к 13:00 с эмоциями на всю жизнь.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="fi">
+      <p class="section-label" data-ru="Бронирование" data-en="Booking">Бронирование</p>
+      <h2 class="section-title" data-ru="Готовы нырнуть<br>в <em>другой мир?</em>" data-en="Ready to dive into<br><em>another world?</em>">Готовы нырнуть<br>в <em>другой мир?</em></h2>
+      <p data-ru="Напишите нам в WhatsApp — ответим в течение часа и подберём удобную дату" data-en="Message us on WhatsApp — we'll reply within an hour and find a date that works">Напишите нам в WhatsApp — ответим в течение часа и подберём удобную дату</p>
+      <a href="https://wa.me/84347779230?text=Хочу%20дайвинг" class="btn" target="_blank">
+        <span data-ru="Написать в WhatsApp" data-en="Message on WhatsApp">Написать в WhatsApp</span>
+      </a>
+      <div class="cta-details">
+        <div class="cta-detail">
+          <div class="cta-detail-label" data-ru="Время" data-en="Time">Время</div>
+          <div class="cta-detail-value">7:00 – 13:00</div>
+        </div>
+        <div class="cta-detail">
+          <div class="cta-detail-label" data-ru="Бронь" data-en="Booking">Бронь</div>
+          <div class="cta-detail-value" data-ru="За 24 часа" data-en="24h ahead">За 24 часа</div>
+        </div>
+        <div class="cta-detail">
+          <div class="cta-detail-label" data-ru="Язык" data-en="Language">Язык</div>
+          <div class="cta-detail-value" data-ru="Русский" data-en="RU / EN">Русский</div>
+        </div>
+        <div class="cta-detail">
+          <div class="cta-detail-label" data-ru="Опыт" data-en="Experience">Опыт</div>
+          <div class="cta-detail-value" data-ru="Не нужен" data-en="Not needed">Не нужен</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="images/logo.svg" alt="RDT" class="footer-logo">
+        <div class="footer-brand">Russian <em>Divers</em> Team</div>
+        <p class="footer-desc" data-ru="Фан-дайвинг в Нячанге с русскоязычным инструктором. Тёплое море, кораллы и эмоции на всю жизнь." data-en="Fun diving in Nha Trang with a Russian-speaking instructor. Warm sea, corals and memories for life.">Фан-дайвинг в Нячанге с русскоязычным инструктором. Тёплое море, кораллы и эмоции на всю жизнь.</p>
+      </div>
+      <div>
+        <div class="footer-col-title" data-ru="Контакты" data-en="Contacts">Контакты</div>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/84347779230" target="_blank">WhatsApp</a></li>
+          <li><a href="https://t.me/RDTinVietnam" target="_blank">Telegram</a></li>
+          <li><a href="https://t.me/rdtvietnam" target="_blank" data-ru="Наш канал" data-en="Our channel">Наш канал</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-ru="Программы" data-en="Programs">Программы</div>
+        <ul class="footer-links">
+          <li><a href="#" data-ru="Фан-дайвинг — $90" data-en="Fun diving — $90">Фан-дайвинг — $90</a></li>
+          <li><a href="#" data-ru="С контентом — $120" data-en="With content — $120">С контентом — $120</a></li>
+          <li><a href="#" data-ru="Снорклинг — $40" data-en="Snorkeling — $40">Снорклинг — $40</a></li>
+          <li><a href="#" data-ru="Дайвинг (опытным) — $80" data-en="Diving (certified) — $80">Дайвинг (опытным) — $80</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Russian Divers Team · Нячанг, Вьетнам</div>
+      <div class="footer-copy">🤿 Dive deeper</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn:${lang==='ru'?'first':'last'}-child`).classList.add('active');
+  document.querySelectorAll('[data-ru]').forEach(el => {
+    const t = el.getAttribute(`data-${lang}`);
+    if (t) el.innerHTML = t;
+  });
+}
+
+// Fade in on scroll
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
