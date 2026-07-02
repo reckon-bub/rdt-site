@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Russian Divers Team | Дайвинг и снорклинг в Нячанге</title>
+<meta name="description" content="Дайвинг от $90, снорклинг от $40. Русскоязычные инструкторы, трансфер и обед включены. Нячанг, Вьетнам.">
+<link rel="icon" href="favicon.png" type="image/png">
+
+<meta property="og:title" content="Russian Divers Team | Нячанг">
+<meta property="og:description" content="Дайвинг от $90, снорклинг от $40. Русскоязычные инструкторы.">
+<meta property="og:image" content="logo.jpg">
+<meta property="og:type" content="website">
+
+<style>
+  :root{
+    --bg-deep:#061620;
+    --bg-mid:#0a2230;
+    --teal:#22c7c0;
+    --teal-light:#5fe8e0;
+    --text:#eaf6f6;
+    --text-dim:#a9c4c6;
+    --card:#0e2c3a;
+    --border:rgba(95,232,224,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(34,199,192,.15), transparent 60%),
+      linear-gradient(180deg,var(--bg-deep),var(--bg-mid));
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:32px 16px 48px;
+  }
+  .wrap{
+    width:100%;
+    max-width:480px;
+  }
+  header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  header img{
+    width:96px;
+    height:auto;
+    margin-bottom:14px;
+    filter:drop-shadow(0 4px 18px rgba(34,199,192,.35));
+  }
+  header .tag{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal-light);
+    margin-bottom:6px;
+  }
+  header h1{
+    font-size:24px;
+    font-weight:700;
+    line-height:1.25;
+  }
+  header h1 em{
+    color:var(--teal-light);
+    font-style:normal;
+  }
+  header p{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--text-dim);
+  }
+
+  .prices{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:22px 0 26px;
+  }
+  .price-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px 10px;
+    text-align:center;
+  }
+  .price-card .label{
+    font-size:12px;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .price-card .value{
+    font-size:26px;
+    font-weight:700;
+    color:var(--teal-light);
+    margin-top:4px;
+  }
+
+  ul.points{
+    list-style:none;
+    margin-bottom:28px;
+  }
+  ul.points li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:14.5px;
+    color:var(--text);
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  ul.points li:last-child{border-bottom:none;}
+  ul.points li::before{
+    content:"✓";
+    color:var(--teal);
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  .btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    padding:15px 18px;
+    margin-bottom:12px;
+    border-radius:14px;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:600;
+    color:var(--bg-deep);
+    background:var(--teal);
+    transition:transform .15s ease, filter .15s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn svg{width:22px;height:22px;flex-shrink:0;}
+  .btn.primary{
+    background:linear-gradient(135deg,var(--teal-light),var(--teal));
+    box-shadow:0 8px 24px rgba(34,199,192,.35);
+    font-size:17px;
+    padding:17px 18px;
+  }
+  .btn.secondary{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+  }
+  .btn .sub{
+    font-weight:400;
+    font-size:12.5px;
+    opacity:.75;
+    display:block;
+    margin-top:2px;
+  }
+  .btn-text{display:flex;flex-direction:column;}
+
+  .divider{
+    text-align:center;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin:24px 0 14px;
+    position:relative;
+  }
+  .divider::before,.divider::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:30%;
+    height:1px;
+    background:var(--border);
+  }
+  .divider::before{left:0;}
+  .divider::after{right:0;}
+
+  footer{
+    text-align:center;
+    margin-top:30px;
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  footer a{color:var(--teal-light);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="logo.png" alt="Russian Divers Team">
+    <div class="tag">Нячанг · Вьетнам · PADI</div>
+    <h1>Russian <em>Divers</em> Team</h1>
+    <p>Дайвинг и снорклинг с русскоязычными инструкторами</p>
+  </header>
+
+  <div class="prices">
+    <div class="price-card">
+      <div class="label">Дайвинг</div>
+      <div class="value">$90</div>
+    </div>
+    <div class="price-card">
+      <div class="label">Снорклинг</div>
+      <div class="value">$45</div>
+    </div>
+  </div>
+
+  <ul class="points">
+    <li>Для начинающих — уметь плавать не нужно</li>
+    <li>Погружение на глубину до 12 метров</li>
+    <li>Два погружения в комплекте</li>
+    <li>Трансфер туда и обратно включён</li>
+    <li>Перекусы и обед на месте</li>
+    <li>Русскоязычные инструкторы</li>
+    <li>Можно с детьми от 10 лет</li>
+  </ul>
+
+  <a class="btn primary" href="https://wa.me/84347779230?text=Хочу%20записаться%20на%20дайвинг" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.05 2h-.01zm5.8 14.13c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.98 0-1.41.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.62.77 1.9.91.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
+    <span class="btn-text">Написать в WhatsApp<span class="sub">Быстрый ответ, бронирование</span></span>
+  </a>
+
+  <a class="btn secondary" href="https://t.me/RDTinVietnam" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 3.5L2.7 11.1c-1.3.5-1.3 1.2-.2 1.6l4.9 1.5 1.9 5.9c.2.6.4.9.9.9.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.7l3-14c.3-1.2-.4-1.7-1.5-1.6zM8.3 13.6l9.3-5.9c.4-.3.8-.1.5.2l-7.7 7.1-.3 3.1-1.1-3.6z"/></svg>
+    <span class="btn-text">Написать в Telegram</span>
+  </a>
+
+  <a class="btn secondary" href="https://instagram.com/rdtvietnam" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.8 1.67 4.96 4.96.07 1.3.07 1.66.07 4.9s0 3.6-.07 4.9c-.15 3.28-1.67 4.8-4.96 4.96-1.3.07-1.66.07-4.9.07s-3.6 0-4.9-.07c-3.29-.15-4.8-1.68-4.96-4.96C2.07 15.6 2.07 15.24 2.07 12s0-3.6.07-4.9C2.28 3.8 3.8 2.28 7.1 2.13 8.4 2.06 8.76 2.06 12 2.06M12 0C8.7 0 8.3 0 7 .07c-4.35.2-6.78 2.62-6.98 6.98C0 8.3 0 8.7 0 12s0 3.7.07 5c.2 4.35 2.62 6.78 6.98 6.98C8.3 24 8.7 24 12 24s3.7 0 5-.07c4.35-.2 6.78-2.62 6.98-6.98.07-1.3.07-1.7.07-5s0-3.7-.07-5c-.2-4.35-2.62-6.78-6.98-6.98C15.7 0 15.3 0 12 0zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+    <span class="btn-text">Instagram</span>
+  </a>
+
+  <a class="btn secondary" href="https://t.me/rdtvietnam" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 3.5L2.7 11.1c-1.3.5-1.3 1.2-.2 1.6l4.9 1.5 1.9 5.9c.2.6.4.9.9.9.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.7l3-14c.3-1.2-.4-1.7-1.5-1.6zM8.3 13.6l9.3-5.9c.4-.3.8-.1.5.2l-7.7 7.1-.3 3.1-1.1-3.6z"/></svg>
+    <span class="btn-text">Наш канал в Telegram</span>
+  </a>
+
+  <div class="divider">Отзывы</div>
+
+  <a class="btn secondary" href="https://maps.app.goo.gl/z17VC9pG5abqmxGL9" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 11.5 7.3 11.7.2.2.5.3.7.3s.5-.1.7-.3c.3-.2 7.3-6.3 7.3-11.7 0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+    <span class="btn-text">Отзывы на Google картах</span>
+  </a>
+
+  <footer>
+    Russian Divers Team · Нячанг, Вьетнам<br>
+    <a href="https://russiandivers.team">russiandivers.team</a>
+  </footer>
+
+</div>
+</body>
+</html>
